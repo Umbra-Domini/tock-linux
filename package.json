@@ -1,0 +1,70 @@
+{
+  "name": "tock",
+  "productName": "Tock",
+  "version": "1.0.0",
+  "description": "Flip clock screensaver",
+  "homepage": "https://tock-linux.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Umbra-Domini/tock-linux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Umbra-Domini/tock-linux/issues"
+  },
+  "desktopName": "tock.desktop",
+  "author": {
+    "name": "UmbraDomini",
+    "email": "manraajsingh@proton.me",
+    "url": "https://github.com/Umbra-Domini"
+  },
+  "license": "MIT",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron . --no-sandbox",
+    "watch": "electron . --no-sandbox --watch",
+    "screensaver": "electron . --no-sandbox --screensaver",
+    "dist": "electron-builder --linux deb",
+    "dist:rpm": "electron-builder --linux rpm",
+    "dist:appimage": "electron-builder --linux AppImage"
+  },
+  "devDependencies": {
+    "electron": "^44.9.2",
+    "electron-builder": "^26.0.0"
+  },
+  "build": {
+    "appId": "com.umbradomini.tock",
+    "productName": "Tock",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "clock/**/*",
+      "audio/**/*"
+    ],
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Utility",
+      "icon": "build/icon.png",
+      "executableName": "tock",
+      "syncDesktopName": true,
+      "maintainer": "UmbraDomini <manraajsingh@proton.me>",
+      "synopsis": "Flip clock screensaver",
+      "desktop": {
+        "entry": {
+          "Name": "Tock",
+          "Comment": "Flip clock and screensaver",
+          "Keywords": "clock;screensaver;flip;"
+        }
+      }
+    },
+    "deb": {
+      "recommends": [
+        "libglib2.0-bin"
+      ]
+    }
+  }
+}

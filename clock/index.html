@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Tock – Flip Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main id="clock" aria-label="Flip clock">
+        <div class="group" id="hh"><span class="ampm" id="ampm"></span></div>
+        <div class="group" id="mm"></div>
+    </main>
+
+    <div id="menu">
+        <button id="gear" type="button" aria-label="Settings" aria-haspopup="true" aria-expanded="false"
+            aria-controls="panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path
+                    d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                <circle cx="12" cy="12" r="3" />
+            </svg>
+        </button>
+
+        <aside id="panel" aria-label="Settings">
+            <div class="seg tabs app-only" id="tabs" role="tablist" aria-label="Settings sections">
+                <button type="button" data-t="clock" class="on">Clock</button>
+                <button type="button" data-t="ss">Screensaver</button>
+            </div>
+
+            <div class="panes">
+                <div class="pane" id="pane-clock">
+                    <div class="title">Display</div>
+                    <label class="row"><span class="name">24-hour<i class="info" tabindex="0" role="img"
+                                aria-label="Show hours as 00–23 instead of 12-hour with AM/PM."
+                                data-tip="Show hours as 00–23 instead of 12-hour with AM/PM."><svg viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="checkbox" id="h24"><i class="tgl"></i></label>
+                    <div class="row range" id="ampmrow"><span class="name">AM/PM<i class="info" tabindex="0" role="img"
+                                aria-label="Put the AM/PM label in the top-left or bottom-left corner of the hours."
+                                data-tip="Put the AM/PM label in the top-left or bottom-left corner of the hours."><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span>
+                        <div class="seg" id="ampmpos" role="group" aria-label="AM/PM position">
+                            <button type="button" data-v="top">Top</button>
+                            <button type="button" data-v="bottom">Bottom</button>
+                        </div>
+                    </div>
+                    <label class="row"><span class="name">Flaps<i class="info" tabindex="0" role="img"
+                                aria-label="Flip the digits like a card. Off swaps them instantly."
+                                data-tip="Flip the digits like a card. Off swaps them instantly."><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="checkbox" id="flaps"><i class="tgl"></i></label>
+                    <label class="row"><span class="name">Card background<i class="info" tabindex="0" role="img"
+                                aria-label="Show the dark card behind each digit. Off leaves just the digits on black."
+                                data-tip="Show the dark card behind each digit. Off leaves just the digits on black."><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="checkbox" id="bg"><i class="tgl"></i></label>
+                    <label class="row" title="Slowly moves the clock a few pixels to prevent screen burn-in"><span
+                            class="name">Burn-in shift<i class="info" tabindex="0" role="img"
+                                aria-label="Moves the clock a few pixels every few minutes so no pixel stays lit in one spot."
+                                data-tip="Moves the clock a few pixels every few minutes so no pixel stays lit in one spot."><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="checkbox" id="shift"><i class="tgl"></i></label>
+                    <label class="row range"><span class="name">Dim<i class="info" tabindex="0" role="img"
+                                aria-label="Lowers the clock's brightness."
+                                data-tip="Lowers the clock's brightness."><svg viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="range" id="dim" min="15" max="100"><output
+                            id="dimv"></output></label>
+                    <label class="row range"><span class="name">Size<i class="info" tabindex="0" role="img"
+                                aria-label="Makes the clock bigger or smaller."
+                                data-tip="Makes the clock bigger or smaller."><svg viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="range" id="size" min="40" max="100"><output
+                            id="sizev"></output></label>
+
+                    <div class="title">Sound</div>
+                    <label class="row"><span class="name">Flip sound<i class="info" tabindex="0" role="img"
+                                aria-label="Plays a click each time the digits flip."
+                                data-tip="Plays a click each time the digits flip."><svg viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="checkbox" id="sound"><i class="tgl"></i></label>
+                    <label class="row range"><span class="name">Volume<i class="info" tabindex="0" role="img"
+                                aria-label="How loud the flip sound is." data-tip="How loud the flip sound is."><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="range" id="vol" min="0" max="100"><output
+                            id="volv"></output></label>
+                </div>
+
+                <div class="pane" id="pane-ss" hidden>
+                    <label class="row range"><span class="name">Start after<i class="info" tabindex="0" role="img"
+                                aria-label="How long you must be idle before the screensaver starts."
+                                data-tip="How long you must be idle before the screensaver starts."><svg
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
+                                </svg></i></span><input type="range" id="delay" min="1" max="30"><output
+                            id="delayv"></output></label>
+                    <div class="pair">
+                        <button id="preview" type="button">Preview</button>
+                        <button id="off" type="button">Turn off</button>
+                    </div>
+                    <p class="hint">Preview shows the screensaver with the settings on screen now. The real one only
+                        uses saved settings.</p>
+                </div>
+            </div>
+
+            <div class="foot app-only">
+                <div class="status"><i class="dot" id="statusdot"></i><span id="status"></span><button id="discard"
+                        type="button" hidden>Discard</button></div>
+                <button id="save" type="button" class="primary">Save &amp; set as screensaver</button>
+            </div>
+        </aside>
+    </div>
+
+    <div id="tip" role="tooltip"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
