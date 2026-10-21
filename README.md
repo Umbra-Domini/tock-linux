@@ -5,7 +5,7 @@
 <h1 align="center">Tock</h1>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/37ea6c72-c1f5-46a2-8e95-71253e201a74" alt="Tock flip animation" width="720">
+  <img width="800" height="429" alt="Tock flip animation" src="https://github.com/user-attachments/assets/32b323c5-c6f2-41f6-9a8a-4fe7fdf6a8ea" />
 </p>
 
 <p align="center">
